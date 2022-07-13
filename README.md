@@ -31,17 +31,20 @@ D2 = [row]
 for i in range(1,N):
     row = np.roll(row,1)
     D2.append(row)
-
+    
+# Second derivative matrix
 D2 = np.array(D2)
 
-# Incomporating the boundary conditions
+# Incorporating the boundary conditions
 D2[0,N-1] = 0
 D2[N-1,0] = 0
 
 V = 100*x**2
 
+# Final Hamiltonian matrix
 H = -D2/(h**2) + np.diag(V)
 
+# Find eigen values and eigen vectors
 E, v = LA.eig(H)
 
 Psi = {}
