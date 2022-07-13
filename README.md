@@ -61,7 +61,7 @@ plt.title('Energy eigen values')
 plt.show()
 ```
 <p align="center">
-  <img src="SHO_Energy.png" width="500px" title="hover text">
+  <img src="SHO_Energy.png" width="500px" title="">
 </p>
 
 ```python
@@ -74,11 +74,21 @@ plt.title('Wave functions')
 ```
 
 <p align="center">
-  <img src="SHO_Wave_Functions.png" width="500px" title="hover text">
+  <img src="SHO_Wave_Functions.png" width="500px" title="">
 </p>
 
 ## Extension to higher dimensions
 
-For example, the method can be easily extended to higher dimensions through tensor product operation. In 3D, the $\nabla^2$ can be approximated using the same $D2$ matrix as
+The method can be easily extended to higher dimensions through tensor product operation. In 3D, the $\nabla^2$ can be approximated using the same $D2$ matrix as
 
 $$ D2 \otimes I_{N \times N} \otimes I_{N \times N} + I_{N \times N} \otimes D2 \otimes I_{N \times N} + I_{N \times N} \otimes I_{N \times N} \otimes D2 $$
+
+The hydrogen atom be solved as a matrix eigen value problem with a little bit of effort:
+
+<p align="center">
+  <img src="Hydrogen Atom Numerical.jpg" width="500px" title="">
+</p>
+
+Code will be added later.
+
+
