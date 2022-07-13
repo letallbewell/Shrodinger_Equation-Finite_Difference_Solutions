@@ -34,6 +34,10 @@ for i in range(1,N):
 
 D2 = np.array(D2)
 
+# Incomporating the boundary conditions
+D2[0,N-1] = 0
+D2[N-1,0] = 0
+
 V = 100*x**2
 
 H = -D2/(h**2) + np.diag(V)
@@ -56,6 +60,9 @@ plt.ylabel('$E_n$')
 plt.title('Energy eigen values')
 plt.show()
 ```
+<p align="center">
+  <img src="SHO_Energy.png" width="500px" title="hover text">
+</p>
 
 ```python
 for i in range(3):
@@ -65,3 +72,13 @@ plt.xlabel('$x$')
 plt.ylabel('$\Psi$')
 plt.title('Wave functions')
 ```
+
+<p align="center">
+  <img src="SHO_Wave_Functions.png" width="500px" title="hover text">
+</p>
+
+## Extension to higher dimensions
+
+For example, the method can be easily extended to higher dimensions through tensor product operation. In 3D, the $\nabla^2$ can be approximated using the same $D2$ matrix as
+
+$$ D2 \otimes I_{N \times N} \otimes I_{N \times N} + I_{N \times N} \otimes D2 \otimes I_{N \times N} + I_{N \times N} \otimes I_{N \times N} \otimes D2 $$
