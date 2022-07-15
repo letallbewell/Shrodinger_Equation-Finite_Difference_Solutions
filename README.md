@@ -72,7 +72,7 @@ plt.show()
 ```python
 for i in range(3):
     plt.plot(x, Psi[i], label=str(i))
-plt.legend(['$\Psi_'+str(i)+'$' for i in range(5)])
+plt.legend(['$\Psi_'+str(i)+'$' for i in range(3)])
 plt.xlabel('$x$')
 plt.ylabel('$\Psi$')
 plt.title('Wave functions')
