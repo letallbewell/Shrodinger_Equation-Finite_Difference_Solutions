@@ -56,7 +56,7 @@ E = [E[i] for i in sorted_indices]
 Psi = [v[:,i] for i in sorted_indices]
 ```
 
-Now we have the $N$ energy eigen functions and eigen vectors. A quick plot will reveal the solutions are reasonable.
+Now we have the $N$ energy eigen functions and eigen vectors. A quick plot will reveal that the solutions are reasonable.
 
 ```python
 plt.scatter(list(range(10)),E[:10])
