@@ -1,8 +1,8 @@
 # Heisenberg
-I am starting this repo as a first stage towards a Python library that can solve the Schrodinger equation in any dimensions under arbitrary potentials and boundary conditions using FInite DIfference or Spectral Methods.
+This repo demonstrates a simple algorithm using `numpy` functions and the Finite Difference approximation that can solve the Schrodinger equation in any dimensions under arbitrary potentials and boundary conditions using.
 
 
-## The 1D Harmonic Oscillator as an example           
+## In 1 dimension        
 
 The Schrodinger equation with the constants omitted is:
 
@@ -16,84 +16,26 @@ where $h$ is the grid spacing.
 
 The differntial equation can now be converted into a matrix eigen value problem as finding the eigen values of the matrix $H =D2 + V$. $D2$ is created by rolling $[-2, 1, 0,...,0, 1]$ across the rows and $V$ is the diagonal matrix created from the potential evaluated on the grid.
 
-A quick Python implimentation would look like:
+The numerical solutions start to diverge from the analytic solutions for higher quantum numbers because their oscillatory behaviour will eventually break the resolution power of the grid. You can reduce $h$ or use a higher order Finite Difference approximation to combat this. Decreasing $h$ too much will cause problem because of the increase in floating poitn approximation error, but the Finite Difference approximation error will go down. We can always operate in a sweet spot for solving elementary problems. See [a seminar report](https://drive.google.com/file/d/1DIg4EB0zVfoEOu_4VoJFeTKqtzHaXho8/view?usp=sharing) I did in the past for a little bit more detail.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from numpy import linalg as LA
+## Examples 
 
-N = 2**10
-x = np.linspace(-3,3,N)
-h = 6/N
+![1d_IPW](https://user-images.githubusercontent.com/43025445/188310401-607b39a0-d84c-4fb6-b76f-04edfca4c2d7.png)
 
-row = np.array([-2,1] + [0 for i in range(N-3)] + [1])
-D2 = [row]
-
-for i in range(1,N):
-    row = np.roll(row,1)
-    D2.append(row)
-    
-# Second derivative matrix
-D2 = np.array(D2)
-
-# Incorporating the boundary conditions
-D2[0,N-1] = 0
-D2[N-1,0] = 0
-
-V = 100*x**2
-
-# Final Hamiltonian matrix
-H = -D2/(h**2) + np.diag(V)
-
-# Find eigen values and eigen vectors
-E, v = LA.eig(H)
-
-Psi = {}
-
-sorted_indices = np.argsort(E)
-E = [E[i] for i in sorted_indices]
-Psi = [v[:,i] for i in sorted_indices]
-```
-
-Now we have the $N$ energy eigen functions and eigen vectors. A quick plot will reveal that the solutions are reasonable.
-
-```python
-plt.scatter(list(range(10)),E[:10])
-plt.xlabel('$n$')
-plt.ylabel('$E_n$')
-plt.title('Energy eigen values')
-plt.show()
-```
-<p align="center">
-  <img src="SHO_Energy.png" width="500px" title="">
-</p>
-
-```python
-for i in range(3):
-    plt.plot(x, Psi[i], label=str(i))
-plt.legend(['$\Psi_'+str(i)+'$' for i in range(3)])
-plt.xlabel('$x$')
-plt.ylabel('$\Psi$')
-plt.title('Wave functions')
-```
-
-<p align="center">
-  <img src="SHO_Wave_Functions.png" width="500px" title="">
-</p>
+![1d_HPW](https://user-images.githubusercontent.com/43025445/188310414-035467a3-9443-4474-8df2-6d823ed7e5c2.png)
 
 ## Extension to higher dimensions
 
-The method can be easily extended to higher dimensions through tensor product operation. In 3D, the $\nabla^2$ can be approximated using the same $D2$ matrix as
+The method can be easily extended to higher dimensions through tensor product operation. For example, in 3D, the $\nabla^2$ can be approximated using the same $D2$ matrix as
 
 $$ D2 \otimes I_{N \times N} \otimes I_{N \times N} + I_{N \times N} \otimes D2 \otimes I_{N \times N} + I_{N \times N} \otimes I_{N \times N} \otimes D2 $$
 
-The hydrogen atom be solved as a matrix eigen value problem with a little bit of effort:
+### 2d Harmonic Potential Well
+![](https://user-images.githubusercontent.com/43025445/188310465-ba027fe0-04a9-46aa-ad12-2efc7b06a102.png)
 
-<p align="center">
-  <img src="Hydrogen Atom Numerical.jpg" width="500px" title="">
-</p>
+### 3d Hydrogen Atom Potential
 
-Code will be added later.
+The following plot is a cross section of the wave function. The cross section plane can be moved using the slider inside the jupyter notebook (I thought a 3d density plot is not worth the trouble).
 
+![Screen Shot 2022-09-04 at 4 45 59 PM](https://user-images.githubusercontent.com/43025445/188310541-26432a58-e740-4697-a1c5-f798b424ed1b.png)
 
