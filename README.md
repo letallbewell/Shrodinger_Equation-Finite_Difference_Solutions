@@ -29,7 +29,7 @@ The numerical solutions start to diverge from the analytic solutions for higher 
 
 ## Extension to higher dimensions
 
-The method can be easily extended to higher dimensions through tensor product operation. For example, in 3D, the $\nabla^2$ can be approximated using the same $D2$ matrix as
+The method can be easily extended to higher dimensions through tensor product operation. For example, in 3D, $\nabla^2$ can be approximated using the same $D2$ matrix as
 
 $$ D2 \otimes I_{N \times N} \otimes I_{N \times N} + I_{N \times N} \otimes D2 \otimes I_{N \times N} + I_{N \times N} \otimes I_{N \times N} \otimes D2 $$
 
