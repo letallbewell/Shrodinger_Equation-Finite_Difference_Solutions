@@ -1,7 +1,6 @@
 # Finite Difference Approximation and the Schrodinger Equation
 
-This repo demonstrates a simple algorithm using `numpy` functions and the Finite Difference approximation that can solve the Schrodinger equation in any dimensions under arbitrary potentials and boundary conditions using.
-
+This repo demonstrates a simple algorithm using `NumPy` functions and the Finite Difference approximation that can solve the Schrodinger equation in any dimension under arbitrary potentials and boundary conditions.
 
 ## In 1 dimension        
 
@@ -15,9 +14,9 @@ $$ \frac{d^2 \Psi}{dx^2} \left( x_i \right) = \frac{\Psi_{i-1} - 2 \Psi_i + \Psi
 
 where $h$ is the grid spacing.
 
-The differntial equation can now be converted into a matrix eigen value problem as finding the eigen values of the matrix $H =D2 + V$. $D2$ is created by rolling $[-2, 1, 0,...,0, 1]$ across the rows and $V$ is the diagonal matrix created from the potential evaluated on the grid.
+The differential equation can now be converted into a matrix eigenvalue problem by finding the eigenvalues of the matrix $H =D2 + V$. $D2$ is created by rolling $[-2, 1, 0,...,0, 1]$ across the rows, and $V$ is the diagonal matrix constructed from the potential evaluated on the grid.
 
-The numerical solutions start to diverge from the analytic solutions for higher quantum numbers because their oscillatory behaviour will eventually break the resolution power of the grid. You can reduce $h$ or use a higher order Finite Difference approximation to combat this. Decreasing $h$ too much will cause problem because of the increase in floating poitn approximation error, but the Finite Difference approximation error will go down. We can always operate in a sweet spot for solving elementary problems. See [a seminar report](https://drive.google.com/file/d/1DIg4EB0zVfoEOu_4VoJFeTKqtzHaXho8/view?usp=sharing) I did in the past for a little bit more detail.
+The numerical solutions start to diverge from the analytic solutions for higher quantum numbers because their oscillatory behavior will eventually break the resolution power of the grid. You can reduce $h$ or use a higher-order Finite Difference approximation to combat this. Decreasing $h$ too much is not desirable because the floating point approximation error will increase, but the Finite Difference approximation error will go down. We can always operate in a sweet spot for solving elementary problems. See [a seminar report](https://drive.google.com/file/d/1DIg4EB0zVfoEOu_4VoJFeTKqtzHaXho8/view?usp=sharing) I did in the past for a little bit more detail.
 
 ### Infinite Potential Well
 
@@ -29,7 +28,7 @@ The numerical solutions start to diverge from the analytic solutions for higher 
 
 ## Extension to higher dimensions
 
-The method can be easily extended to higher dimensions through tensor product operation. For example, in 3D, $\nabla^2$ can be approximated using the same $D2$ matrix as
+The method easily extends to higher dimensions through tensor product operation. For example, in 3D, $\nabla^2$ can be approximated using the same $D2$ matrix as
 
 $$ D2 \otimes I_{N \times N} \otimes I_{N \times N} + I_{N \times N} \otimes D2 \otimes I_{N \times N} + I_{N \times N} \otimes I_{N \times N} \otimes D2 $$
 
@@ -38,7 +37,7 @@ $$ D2 \otimes I_{N \times N} \otimes I_{N \times N} + I_{N \times N} \otimes D2 
 
 ### 3d Hydrogen Atom Potential
 
-The following plot is a cross section of the wave functions (I thought a 3d density plot is not worth the trouble). The cross section plane can be moved using the slider inside the jupyter notebook.
+The following plot is a cross-section of the wave functions (I thought a 3d density plot is not worth the trouble). The slider inside the jupyter notebook changes the cross-section plane.
 
 ![Screen Shot 2022-09-04 at 4 45 59 PM](https://user-images.githubusercontent.com/43025445/188310541-26432a58-e740-4697-a1c5-f798b424ed1b.png)
 
