@@ -1,10 +1,10 @@
 # Finite Difference Approximation and the Schrodinger Equation
 
-This repo demonstrates a simple algorithm using `NumPy` functions and the Finite Difference approximation that can solve the Schrodinger equation in any dimension under arbitrary potentials and boundary conditions.
+This repository demonstrates a simple algorithm using `NumPy` functions and the Finite Difference approximation that can solve the Schrodinger equation in any dimension under arbitrary potentials and boundary conditions.
 
 ## In 1 dimension        
 
-The Schrodinger equation with the constants omitted is:
+The Schrodinger equation with the constants omitted is given by
 
 $$ \frac{d^2 \Psi}{dx^2} + x^2 \Psi = E \Psi $$
 
@@ -16,7 +16,7 @@ where $h$ is the grid spacing.
 
 The differential equation can now be converted into a matrix eigenvalue problem by finding the eigenvalues of the matrix $H =D2 + V$. $D2$ is created by rolling $[-2, 1, 0,...,0, 1]$ across the rows, and $V$ is the diagonal matrix constructed from the potential evaluated on the grid.
 
-The numerical solutions start to diverge from the analytic solutions for higher quantum numbers because their oscillatory behavior will eventually break the resolution power of the grid. You can reduce $h$ or use a higher-order Finite Difference approximation to combat this. Decreasing $h$ too much is not desirable because the floating point approximation error will increase, but the Finite Difference approximation error will go down. We can always operate in a sweet spot for solving elementary problems. See [a seminar report](https://drive.google.com/file/d/1DIg4EB0zVfoEOu_4VoJFeTKqtzHaXho8/view?usp=sharing) I did in the past for a little bit more detail.
+The numerical solutions start to diverge from the analytic solutions for higher quantum numbers because their oscillatory behavior will eventually break the resolution power of the grid. We can reduce $h$ or use a higher-order Finite Difference approximation to combat this. Decreasing $h$ too much is not desirable because the floating point approximation error will increase, but the Finite Difference approximation error will go down. We can always operate in a sweet spot for solving elementary problems. See [a seminar report](https://drive.google.com/file/d/1DIg4EB0zVfoEOu_4VoJFeTKqtzHaXho8/view?usp=sharing) I did in the past for a little bit more detail.
 
 ### Infinite Potential Well
 
